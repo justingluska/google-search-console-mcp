@@ -1,23 +1,39 @@
-# Google Search Console MCP Server
+# Google Search Console MCP Server (Unofficial)
 
 [![npm version](https://img.shields.io/npm/v/google-search-console-mcp.svg)](https://www.npmjs.com/package/google-search-console-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
+[![CI](https://github.com/justingluska/google-search-console-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/justingluska/google-search-console-mcp/actions/workflows/ci.yml)
 
-The definitive [Model Context Protocol](https://modelcontextprotocol.io/) server for Google Search Console. Connect your AI assistant to real SEO data — search analytics, URL inspection, sitemaps, indexing, and smart opportunity detection.
+An unofficial, open-source [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for [Google Search Console](https://search.google.com/search-console/). Connect your AI assistant to real SEO data — search analytics, URL inspection, sitemaps, indexing, and smart opportunity detection.
 
-## Features
+**Works with:** Claude Desktop, Cursor, VS Code, Windsurf, and any MCP-compatible client.
 
-- **Search Analytics** — Query performance data with all dimensions (including hourly), regex filters, all search types (web, discover, news, image, video), up to 25K rows
-- **Period Comparison** — Compare any two date ranges with automatic delta calculations
-- **Opportunity Detection** — Find quick wins, declining pages, and emerging queries automatically
-- **URL Inspection** — Check indexing status, mobile usability, rich results for single or batch URLs
-- **Sitemap Management** — List, submit, and delete sitemaps
-- **Indexing API** — Submit URL update/delete notifications via Google's Indexing API
-- **Property Management** — List and manage all Search Console properties
-- **Dual Auth** — OAuth 2.0 (interactive) or Service Account (headless) authentication
-- **Rate Limiting** — Built-in quota management respecting all Google API limits
-- **Best Practices** — Tool annotations, curated responses, Zod validation, proper error handling
+## What Can You Do With This?
+
+### Search Performance Analysis
+- Pull your top queries, pages, countries, and devices with full filtering
+- Use regex filters to segment branded vs. non-branded traffic
+- Access all search types: Web, Discover, Google News, Image, Video
+- Get hourly traffic data (via the April 2025 GSC API update)
+- Retrieve up to 25,000 rows per request
+
+### Track Changes Over Time
+- Compare any two date ranges side-by-side
+- See click, impression, CTR, and position deltas at a glance
+- Detect the impact of algorithm updates, deployments, or SEO changes
+
+### Find SEO Opportunities Automatically
+- **Quick wins** — Queries ranking 5-20 with high impressions but low CTR (optimize titles/descriptions)
+- **Declining content** — Pages losing traffic compared to the prior period
+- **Emerging queries** — New or rapidly growing queries you should capitalize on
+
+### Monitor Technical SEO
+- Inspect any URL's index status, mobile usability, rich results, and AMP
+- Batch inspect up to 100 URLs at once with built-in rate limiting
+- Check canonical status and detect mismatches
+- List, submit, and delete sitemaps
+- Send URL update/deletion notifications via the Indexing API
 
 ## Quick Start
 
@@ -29,34 +45,66 @@ npx google-search-console-mcp
 
 ### Prerequisites
 
-1. A [Google Cloud Project](https://console.cloud.google.com/) with the Search Console API enabled
+1. A [Google Cloud Project](https://console.cloud.google.com/) with the **Search Console API** enabled
 2. OAuth 2.0 credentials (Desktop app) or a Service Account
 3. Node.js >= 18
 
-### Option A: Service Account (Recommended for automation)
+### Step 1: Enable the Search Console API
 
-1. Create a Service Account in Google Cloud Console
-2. Download the JSON credentials file
-3. Add the service account email as a user in [Search Console](https://search.google.com/search-console/) (Settings > Users and permissions)
-4. Set the environment variable:
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/)
+2. Select or create a project
+3. Go to **APIs & Services** > **Library**
+4. Search for "Google Search Console API" and click **Enable**
+5. If you plan to use the Indexing API tools, also enable the **Web Search Indexing API**
+
+### Step 2: Create Credentials
+
+#### Option A: Service Account (Recommended)
+
+Best for automation, CI/CD, and MCP servers — no browser interaction needed.
+
+1. In Google Cloud Console, go to **APIs & Services** > **Credentials**
+2. Click **Create Credentials** > **Service Account**
+3. Give it a name (e.g., "gsc-mcp") and click **Create**
+4. Skip the optional permissions steps and click **Done**
+5. Click on the newly created service account
+6. Go to the **Keys** tab > **Add Key** > **Create new key** > **JSON**
+7. Save the downloaded JSON file somewhere safe
+
+Then add the service account to Search Console:
+1. Go to [Google Search Console](https://search.google.com/search-console/)
+2. Select your property
+3. Go to **Settings** > **Users and permissions** > **Add user**
+4. Paste the `client_email` from the JSON file (looks like `name@project.iam.gserviceaccount.com`)
+5. Set permission to **Full** and click **Add**
+
+Set the environment variable:
 
 ```bash
 export GSC_SERVICE_ACCOUNT_PATH=/path/to/service-account.json
 ```
 
-### Option B: OAuth 2.0 (Interactive)
+#### Option B: OAuth 2.0 (Interactive)
 
-1. Create OAuth 2.0 Desktop App credentials in Google Cloud Console
-2. Download the credentials JSON file
-3. Set the environment variable:
+Best for personal use when you want to authenticate as yourself.
+
+1. In Google Cloud Console, go to **APIs & Services** > **Credentials**
+2. Click **Create Credentials** > **OAuth client ID**
+3. Select **Desktop app** as the application type
+4. Download the credentials JSON file
+
+Set the environment variable:
 
 ```bash
 export GSC_OAUTH_CREDENTIALS_PATH=/path/to/credentials.json
 ```
 
-On first run, a browser window opens for authentication. Tokens are cached for subsequent use.
+On first run, a browser window opens for authentication. Tokens are cached automatically for subsequent use.
 
-### Claude Desktop Configuration
+### Step 3: Configure Your MCP Client
+
+<details>
+<summary><strong>Claude Desktop</strong></summary>
 
 Add to your `claude_desktop_config.json`:
 
@@ -74,7 +122,14 @@ Add to your `claude_desktop_config.json`:
 }
 ```
 
-### Cursor Configuration
+Config file location:
+- **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+
+</details>
+
+<details>
+<summary><strong>Cursor</strong></summary>
 
 Add to your `.cursor/mcp.json`:
 
@@ -92,36 +147,114 @@ Add to your `.cursor/mcp.json`:
 }
 ```
 
-## Tools
+</details>
 
-| Tool | Description |
-|------|-------------|
-| `search_analytics` | Query search performance data with full filtering and dimension support |
-| `compare_periods` | Compare two date ranges with delta calculations |
-| `find_opportunities` | Identify quick wins, declining pages, and emerging queries |
-| `inspect_url` | Inspect a single URL's index status, mobile usability, and rich results |
-| `batch_inspect_urls` | Inspect multiple URLs with built-in rate limiting |
-| `list_sitemaps` | List all sitemaps with status and error details |
-| `submit_sitemap` | Submit a new sitemap |
-| `delete_sitemap` | Remove a sitemap |
-| `list_properties` | List all accessible Search Console properties |
-| `notify_url_update` | Notify Google of URL updates/deletions via Indexing API |
-| `get_indexing_status` | Check Indexing API notification status for a URL |
+<details>
+<summary><strong>VS Code</strong></summary>
+
+Add to your `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "google-search-console": {
+      "command": "npx",
+      "args": ["-y", "google-search-console-mcp"],
+      "env": {
+        "GSC_SERVICE_ACCOUNT_PATH": "/path/to/service-account.json"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary><strong>Windsurf</strong></summary>
+
+Add to your `~/.codeium/windsurf/mcp_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "google-search-console": {
+      "command": "npx",
+      "args": ["-y", "google-search-console-mcp"],
+      "env": {
+        "GSC_SERVICE_ACCOUNT_PATH": "/path/to/service-account.json"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+## Available Tools
+
+| Tool | Description | Read-Only |
+|------|-------------|-----------|
+| `search_analytics` | Query search performance data with full filtering, all dimensions, and all search types | Yes |
+| `compare_periods` | Compare two date ranges with automatic delta calculations | Yes |
+| `find_opportunities` | Identify quick wins, declining pages, and emerging queries | Yes |
+| `inspect_url` | Inspect a single URL's index status, mobile usability, rich results, and AMP | Yes |
+| `batch_inspect_urls` | Inspect multiple URLs at once (max 100, rate-limited to 2K/day) | Yes |
+| `list_sitemaps` | List all sitemaps with status, error counts, and content details | Yes |
+| `submit_sitemap` | Submit a new sitemap to Search Console | No |
+| `delete_sitemap` | Remove a sitemap from Search Console tracking | No |
+| `list_properties` | List all accessible Search Console properties with permission levels | Yes |
+| `notify_url_update` | Send a URL update or deletion notification via the Indexing API | No |
+| `get_indexing_status` | Check Indexing API notification status for a URL | Yes |
 
 ## Example Prompts
 
-```
-"Show me my top 20 queries by clicks for the last 7 days"
-"Compare this week's performance to last week"
-"Find quick win opportunities — high impressions but low CTR"
-"Check if https://example.com/new-page is indexed"
-"Inspect these 10 URLs and tell me which ones have indexing issues"
-"List all my sitemaps and their status"
-"Submit my new sitemap at https://example.com/sitemap-blog.xml"
-"Show me hourly traffic data for today"
-"What are my top performing pages on Google Discover?"
-"Find pages that are losing traffic compared to last month"
-```
+Here are some things you can ask your AI assistant once the MCP is connected:
+
+### Search Performance
+| What You Can Ask | Tool Used |
+|------------------|-----------|
+| "Show me my top 20 queries by clicks for the last 7 days" | `search_analytics` |
+| "What are my top performing pages?" | `search_analytics` |
+| "Break down my traffic by device type" | `search_analytics` |
+| "Which countries drive the most impressions?" | `search_analytics` |
+| "Show me all queries containing 'tutorial' with regex" | `search_analytics` |
+| "What's my Discover traffic look like?" | `search_analytics` |
+| "Show me hourly traffic data for the past 3 days" | `search_analytics` |
+| "Filter my queries to only non-branded terms" | `search_analytics` |
+
+### Comparisons
+| What You Can Ask | Tool Used |
+|------------------|-----------|
+| "Compare this week's performance to last week" | `compare_periods` |
+| "How did March compare to February?" | `compare_periods` |
+| "Show me which queries gained or lost the most clicks week over week" | `compare_periods` |
+
+### Opportunities
+| What You Can Ask | Tool Used |
+|------------------|-----------|
+| "Find quick win opportunities — high impressions but low CTR" | `find_opportunities` |
+| "What content is declining in traffic?" | `find_opportunities` |
+| "Are there any new emerging queries I should know about?" | `find_opportunities` |
+| "Give me a full SEO opportunity analysis" | `find_opportunities` |
+
+### Technical SEO
+| What You Can Ask | Tool Used |
+|------------------|-----------|
+| "Is https://example.com/my-page indexed?" | `inspect_url` |
+| "Check these 10 URLs and tell me which have indexing issues" | `batch_inspect_urls` |
+| "List all my sitemaps and their status" | `list_sitemaps` |
+| "Submit my new sitemap at https://example.com/sitemap-blog.xml" | `submit_sitemap` |
+| "Which Search Console properties do I have access to?" | `list_properties` |
+| "Notify Google that I updated https://example.com/page" | `notify_url_update` |
+
+### Multi-Tool Combinations
+| What You Can Ask | Tools Used |
+|------------------|------------|
+| "List my properties, then show top queries for each one" | `list_properties` + `search_analytics` |
+| "Find quick wins and then inspect the top opportunity pages" | `find_opportunities` + `batch_inspect_urls` |
+| "Compare this week to last week, then find what's declining" | `compare_periods` + `find_opportunities` |
+| "Check my sitemaps, then inspect URLs from any with errors" | `list_sitemaps` + `batch_inspect_urls` |
 
 ## Environment Variables
 
@@ -132,6 +265,52 @@ Add to your `.cursor/mcp.json`:
 | `GSC_OAUTH_TOKEN_PATH` | Path to store OAuth tokens (default: `~/.gsc-mcp-token.json`) | No |
 | `GSC_DATA_STATE` | Default data freshness: `final`, `all`, or `hourly_all` (default: `all`) | No |
 | `GSC_DEFAULT_SITE_URL` | Default site URL to use when not specified | No |
+| `GSC_DEBUG` | Set to `true` for verbose debug logging | No |
+
+## API Rate Limits
+
+This server has built-in rate limiting to respect Google's API quotas:
+
+| API | Rate Limit | Daily Limit |
+|-----|-----------|-------------|
+| Search Analytics | 1,200 requests/min | — |
+| URL Inspection | 600 requests/min | 2,000/day |
+| Indexing API (publish) | 200 requests/min | 200/day |
+| Indexing API (metadata) | 600 requests/min | 600/day |
+| All other endpoints | 200 requests/min | — |
+
+You don't need to worry about hitting these — the server manages them automatically. If a quota is reached, you'll get a clear error message explaining what happened and when to retry.
+
+## Troubleshooting
+
+### "User does not have sufficient permission for site"
+- Make sure you added the service account email (or your OAuth user) to the property in Search Console
+- Go to **Settings** > **Users and permissions** in Search Console and verify the email is listed
+- For domain properties, use the format `sc-domain:example.com`
+- For URL-prefix properties, include the protocol and trailing slash: `https://example.com/`
+
+### "No data found" for a query
+- GSC data has a 2-3 day delay for finalized data. Try setting `dataState` to `"all"` for fresher (but potentially partial) data
+- Verify the date range — data is available for the last 16 months
+- Check that the site actually has search traffic for the specified search type
+
+### "Service account file not found"
+- Double-check the path in `GSC_SERVICE_ACCOUNT_PATH` — it must be an absolute path or relative to where the server runs
+- Make sure the JSON file was downloaded correctly from Google Cloud Console
+
+### OAuth browser window doesn't open
+- This is a known limitation with stdio-based MCP servers. The server tries to open your default browser, but some MCP clients block this
+- **Workaround:** Use a Service Account instead (recommended for MCP use)
+- Or run the server manually once (`npx google-search-console-mcp`) in a terminal to complete the OAuth flow, then use the cached token in your MCP client
+
+### "spawn npx ENOENT" on macOS
+- Claude Desktop and other MCP clients may not inherit your shell's PATH
+- Fix: Use the full path to npx in your config. Find it with `which npx` in your terminal
+- Example: Replace `"command": "npx"` with `"command": "/usr/local/bin/npx"` (use your actual path)
+
+### Indexing API returns 403
+- The Indexing API requires separate enablement — make sure you enabled "Web Search Indexing API" in Google Cloud Console
+- Note: The Indexing API is officially supported only for pages with `JobPosting` or `BroadcastEvent` structured data
 
 ## Development
 
@@ -143,9 +322,53 @@ npm run build
 npm test
 ```
 
+### Running Tests
+
+```bash
+npm test              # Run all tests
+npm run test:watch    # Watch mode
+npm run test:coverage # With coverage report
+```
+
+### Project Structure
+
+```
+src/
+  cli.ts              # Entry point (stdio transport)
+  server.ts           # MCP server with all tool registrations
+  auth/
+    client.ts         # OAuth 2.0 + Service Account authentication
+  api/
+    search-console.ts # Google Search Console API wrapper
+    indexing.ts        # Google Indexing API wrapper
+  tools/
+    search-analytics.ts   # search_analytics tool
+    compare-periods.ts    # compare_periods tool
+    find-opportunities.ts # find_opportunities tool
+    inspect-url.ts        # inspect_url + batch_inspect_urls tools
+    sitemaps.ts           # list/submit/delete sitemap tools
+    properties.ts         # list_properties tool
+    indexing.ts           # notify_url_update + get_indexing_status tools
+  utils/
+    rate-limiter.ts   # Token bucket rate limiter + daily quota tracker
+    dates.ts          # Date utilities
+    formatting.ts     # Response formatting (tables, numbers, CTR)
+    logger.ts         # stderr-only logger
+tests/
+  tools/              # Tool-level tests with mocked APIs
+  utils/              # Utility function tests
+```
+
 ## Contributing
 
 Contributions are welcome! Please open an issue first to discuss what you'd like to change.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/my-feature`)
+3. Make your changes
+4. Run tests (`npm test`)
+5. Commit your changes
+6. Push to the branch and open a Pull Request
 
 ## Disclaimer
 
