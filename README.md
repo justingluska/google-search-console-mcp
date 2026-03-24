@@ -258,28 +258,28 @@ Here are some things you can ask your AI assistant once the MCP is connected:
 
 ## Example Outputs
 
-Here's what you'll actually see when using the tools. These examples use real tool output formats from [hiretalent.ph](https://hiretalent.ph) (with modified numbers for illustration):
+Here's what the tool output actually looks like. Examples use [hiretalent.ph](https://hiretalent.ph) with sample data for illustration:
 
 ### search_analytics — "Show me my top queries"
 
 ```
 Search Analytics for sc-domain:hiretalent.ph
 Period: 2026-03-15 to 2026-03-22 | Search Type: web | Data: all
-Total: 1.8K clicks, 85.2K impressions, 2.11% avg CTR, 4.7 avg position
+Total: 14.8K clicks, 412.5K impressions, 3.59% avg CTR, 5.2 avg position
 Showing 10 rows
 
 Query                                     | Clicks | Impressions | CTR    | Position
 ----------------------------------------- | ------ | ----------- | ------ | --------
-hiretalent ph                             | 245    | 310         | 79.03% | 1.1
-hire talent                               | 132    | 480         | 27.50% | 12.8
-est to philippine time                    | 98     | 8.4K        | 1.17%  | 3.2
-eastern time to philippine time           | 87     | 2.1K        | 4.14%  | 2.0
-us time to philippine time                | 64     | 520         | 12.31% | 1.8
-hiretalent                                | 58     | 95          | 61.05% | 3.4
-hire talent ph                            | 52     | 78          | 66.67% | 1.2
-pst to philippine time                    | 45     | 1.9K        | 2.37%  | 5.6
-central time to philippine time           | 38     | 1.1K        | 3.45%  | 4.3
-new zealand time to philippine time       | 31     | 480         | 6.46%  | 1.9
+hire talent philippines                   | 1.8K   | 5.2K        | 34.62% | 1.3
+hire remote filipino workers              | 1.4K   | 8.1K        | 17.28% | 2.1
+outsource to philippines                  | 1.2K   | 15.3K       | 7.84%  | 3.5
+filipino virtual assistant                | 980    | 22.4K       | 4.37%  | 4.2
+philippine staffing agency                | 870    | 6.8K        | 12.79% | 2.8
+best hiring platform philippines          | 640    | 4.1K        | 15.61% | 1.9
+remote workers philippines cost           | 520    | 18.7K       | 2.78%  | 5.6
+hire developers philippines               | 410    | 9.3K        | 4.41%  | 3.7
+hiretalent                                | 380    | 620         | 61.29% | 1.0
+outsourcing vs hiring in-house            | 290    | 31.2K       | 0.93%  | 7.8
 ```
 
 ### search_analytics — "Break down traffic by device"
@@ -287,14 +287,14 @@ new zealand time to philippine time       | 31     | 480         | 6.46%  | 1.9
 ```
 Search Analytics for sc-domain:hiretalent.ph
 Period: 2026-03-15 to 2026-03-22 | Search Type: web | Data: all
-Total: 1.8K clicks, 85.2K impressions, 2.11% avg CTR, 4.7 avg position
+Total: 14.8K clicks, 412.5K impressions, 3.59% avg CTR, 5.2 avg position
 Showing 3 rows
 
 Device  | Clicks | Impressions | CTR   | Position
 ------- | ------ | ----------- | ----- | --------
-MOBILE  | 1.1K   | 58.3K       | 1.89% | 5.2
-DESKTOP | 680    | 24.7K       | 2.75% | 3.8
-TABLET  | 42     | 2.2K        | 1.91% | 6.1
+MOBILE  | 8.2K   | 265.8K      | 3.09% | 5.8
+DESKTOP | 6.1K   | 134.2K      | 4.55% | 4.3
+TABLET  | 510    | 12.5K       | 4.08% | 5.1
 ```
 
 ### find_opportunities — "Find quick win opportunities"
@@ -306,13 +306,13 @@ Recent: 2026-03-15 to 2026-03-22 | Prior: 2026-02-15 to 2026-02-22
 ## Quick Wins
 High-impression queries ranking 5-20 with low CTR. Optimizing titles/descriptions could boost clicks significantly.
 
-Query                                | Page                                                         | Clicks | Impressions | CTR   | Position
------------------------------------- | ------------------------------------------------------------ | ------ | ----------- | ----- | --------
-est time now                         | https://hiretalent.ph/eastern-time-to-philippine-time-conver | 22     | 20.1K       | 0.11% | 7.8
-eastern time now                     | https://hiretalent.ph/eastern-time-to-philippine-time-conver | 6      | 4.5K        | 0.13% | 8.1
-new zealand time                     | https://hiretalent.ph/new-zealand-to-philippines-time-zone-c | 3      | 3.1K        | 0.10% | 7.2
-pst to philippine time               | https://hiretalent.ph/conversion-guide-to-pacific-time-to-ph | 8      | 2.3K        | 0.35% | 5.9
-pacific time                         | https://hiretalent.ph/conversion-guide-to-pacific-time-to-ph | 4      | 1.2K        | 0.33% | 9.4
+Query                                | Page                                                    | Clicks | Impressions | CTR   | Position
+------------------------------------ | ------------------------------------------------------- | ------ | ----------- | ----- | --------
+outsourcing vs hiring in-house       | https://hiretalent.ph/blog/outsourcing-vs-inhouse/      | 290    | 31.2K       | 0.93% | 7.8
+how much to pay filipino VA          | https://hiretalent.ph/blog/filipino-va-salary-guide/    | 145    | 24.6K       | 0.59% | 9.4
+remote team management tips          | https://hiretalent.ph/blog/managing-remote-teams/       | 82     | 18.9K       | 0.43% | 11.2
+philippines tech talent market       | https://hiretalent.ph/blog/ph-tech-talent-2026/         | 54     | 12.3K       | 0.44% | 8.6
+best countries to outsource to       | https://hiretalent.ph/blog/top-outsourcing-countries/   | 38     | 9.7K        | 0.39% | 10.1
 ```
 
 ### compare_periods — "Compare this week to last week"
@@ -322,24 +322,24 @@ Period Comparison for sc-domain:hiretalent.ph
 Period 1: 2026-03-08 to 2026-03-14
 Period 2: 2026-03-15 to 2026-03-21
 
-Overall: Clicks 1.6K → 1.8K (+12.5%)
-         Impressions 78.4K → 85.2K (+8.7%)
+Overall: Clicks 12.1K → 14.8K (+22.3%)
+         Impressions 358.9K → 412.5K (+14.9%)
 
 Top changes (sorted by absolute click delta):
 
 Query                            | P1 Clicks | P2 Clicks | Delta | Change  | P1 Pos | P2 Pos
 -------------------------------- | --------- | --------- | ----- | ------- | ------ | ------
-hiretalent ph                    | 195       | 245       | +50   | +25.6%  | 1.2    | 1.1
-est to philippine time           | 120       | 98        | -22   | -18.3%  | 2.8    | 3.2
-hire talent                      | 112       | 132       | +20   | +17.9%  | 13.5   | 12.8
-us time to philippine time       | 48        | 64        | +16   | +33.3%  | 2.1    | 1.8
-eastern time to philippine time  | 95        | 87        | -8    | -8.4%   | 1.8    | 2.0
+hire remote filipino workers     | 890       | 1.4K      | +510  | +57.3%  | 3.4    | 2.1
+outsource to philippines         | 980       | 1.2K      | +220  | +22.4%  | 4.1    | 3.5
+filipino virtual assistant       | 1.1K      | 980       | -120  | -10.9%  | 3.8    | 4.2
+hire talent philippines          | 1.6K      | 1.8K      | +200  | +12.5%  | 1.5    | 1.3
+remote workers philippines cost  | 620       | 520       | -100  | -16.1%  | 4.9    | 5.6
 ```
 
 ### inspect_url — "Is this page indexed?"
 
 ```
-URL Inspection: https://hiretalent.ph/eastern-time-to-philippine-time-converter/
+URL Inspection: https://hiretalent.ph/blog/outsourcing-vs-inhouse/
 
 ## Index Status
 Verdict: PASS
@@ -349,8 +349,8 @@ Robots.txt: ALLOWED
 Page fetch: SUCCESSFUL
 Last crawl: 2026-03-20T14:32:00Z
 Crawled as: DESKTOP
-Google canonical: https://hiretalent.ph/eastern-time-to-philippine-time-converter/
-User canonical: https://hiretalent.ph/eastern-time-to-philippine-time-converter/
+Google canonical: https://hiretalent.ph/blog/outsourcing-vs-inhouse/
+User canonical: https://hiretalent.ph/blog/outsourcing-vs-inhouse/
 Sitemaps: https://hiretalent.ph/sitemap.xml
 
 ## Mobile Usability
@@ -372,9 +372,9 @@ Quota remaining: 1995/day
   FAIL: 1
 
 ## URLs With Issues
-  NEUTRAL | https://hiretalent.ph/old-timezone-page/
+  NEUTRAL | https://hiretalent.ph/blog/old-salary-data-2024/
     coverage=Crawled - currently not indexed, indexing=INDEXING_ALLOWED, crawled=2026-03-18
-  FAIL | https://hiretalent.ph/test-draft/
+  FAIL | https://hiretalent.ph/staging/new-landing-page/
     coverage=Blocked by robots.txt, indexing=BLOCKED_BY_ROBOTS_TXT, crawled=never
 ```
 
@@ -382,27 +382,32 @@ Quota remaining: 1995/day
 
 ```
 Sitemaps for sc-domain:hiretalent.ph
-Total: 1 sitemap(s)
+Total: 2 sitemap(s)
 
-Sitemap URL                           | Type    | Status    | Last Submitted | Errors | Warnings
-------------------------------------- | ------- | --------- | -------------- | ------ | --------
-https://hiretalent.ph/sitemap.xml     | Sitemap | Processed | 2026-03-01     | 0      | 0
+Sitemap URL                                | Type    | Status    | Last Submitted | Errors | Warnings
+------------------------------------------ | ------- | --------- | -------------- | ------ | --------
+https://hiretalent.ph/sitemap.xml          | Index   | Processed | 2026-03-01     | 0      | 0
+https://hiretalent.ph/sitemap-blog.xml     | Sitemap | Processed | 2026-03-18     | 0      | 1
 
 ## Content Details
 
 https://hiretalent.ph/sitemap.xml:
-  web: 1114 submitted, 980 indexed
+  web: 1450 submitted, 1380 indexed
+
+https://hiretalent.ph/sitemap-blog.xml:
+  web: 285 submitted, 264 indexed
 ```
 
 ### list_properties — "Which properties do I have access to?"
 
 ```
 Search Console Properties
-Total: 1 property/properties
+Total: 2 property/properties
 
 Property                      | Type       | Permission
 ----------------------------- | ---------- | ----------
-sc-domain:hiretalent.ph       | Domain     | siteFullUser
+sc-domain:hiretalent.ph       | Domain     | siteOwner
+https://blog.hiretalent.ph/   | URL Prefix | siteFullUser
 
 Use any of these site URLs with other tools (e.g., search_analytics, inspect_url).
 ```
