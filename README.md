@@ -7,6 +7,8 @@
 
 An unofficial, open-source [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for [Google Search Console](https://search.google.com/search-console/). Connect your AI assistant to real SEO data — search analytics, URL inspection, sitemaps, indexing, and smart opportunity detection.
 
+**5 steps, under 10 minutes to set up.** No coding experience required.
+
 **Works with:** Claude Desktop, Cursor, VS Code, Windsurf, and any MCP-compatible client.
 
 ## Available Tools
