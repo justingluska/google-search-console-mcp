@@ -147,6 +147,10 @@ npm test
 
 Contributions are welcome! Please open an issue first to discuss what you'd like to change.
 
+## Disclaimer
+
+This is an unofficial, community-built tool and is not affiliated with, endorsed by, or sponsored by Google. Google Search Console is a trademark of Google LLC. This project uses the Google Search Console API under Google's [Terms of Service](https://developers.google.com/terms).
+
 ## License
 
 [MIT](LICENSE)
