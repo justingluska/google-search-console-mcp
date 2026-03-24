@@ -1,12 +1,12 @@
 {
-  "name": "google-search-console-mcp",
+  "name": "gluska-seo-gsc-mcp",
   "version": "0.1.0",
   "description": "An unofficial, open-source MCP server for Google Search Console — search analytics, URL inspection, sitemaps, indexing API, and smart SEO opportunity detection",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "google-search-console-mcp": "dist/cli.js"
+    "gluska-seo-gsc-mcp": "dist/cli.js"
   },
   "files": [
     "dist",
@@ -44,12 +44,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/justingluska/google-search-console-mcp.git"
+    "url": "https://github.com/justingluska/gluska-seo-gsc-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/justingluska/google-search-console-mcp/issues"
+    "url": "https://github.com/justingluska/gluska-seo-gsc-mcp/issues"
   },
-  "homepage": "https://github.com/justingluska/google-search-console-mcp#readme",
+  "homepage": "https://github.com/justingluska/gluska-seo-gsc-mcp#readme",
   "engines": {
     "node": ">=18.0.0"
   },

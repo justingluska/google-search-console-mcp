@@ -1,9 +1,9 @@
 # Google Search Console MCP Server (Unofficial)
 
-[![npm version](https://img.shields.io/npm/v/google-search-console-mcp.svg)](https://www.npmjs.com/package/google-search-console-mcp)
+[![npm version](https://img.shields.io/npm/v/gluska-seo-gsc-mcp.svg)](https://www.npmjs.com/package/gluska-seo-gsc-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
-[![CI](https://github.com/justingluska/google-search-console-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/justingluska/google-search-console-mcp/actions/workflows/ci.yml)
+[![CI](https://github.com/justingluska/gluska-seo-gsc-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/justingluska/gluska-seo-gsc-mcp/actions/workflows/ci.yml)
 
 An unofficial, open-source [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for [Google Search Console](https://search.google.com/search-console/). Connect your AI assistant to real SEO data — search analytics, URL inspection, sitemaps, indexing, and smart opportunity detection.
 
@@ -38,7 +38,7 @@ An unofficial, open-source [Model Context Protocol (MCP)](https://modelcontextpr
 ## Quick Start
 
 ```bash
-npx google-search-console-mcp
+npx gluska-seo-gsc-mcp
 ```
 
 ## Setup
@@ -113,7 +113,7 @@ Add to your `claude_desktop_config.json`:
   "mcpServers": {
     "google-search-console": {
       "command": "npx",
-      "args": ["-y", "google-search-console-mcp"],
+      "args": ["-y", "gluska-seo-gsc-mcp"],
       "env": {
         "GSC_SERVICE_ACCOUNT_PATH": "/path/to/service-account.json"
       }
@@ -138,7 +138,7 @@ Add to your `.cursor/mcp.json`:
   "mcpServers": {
     "google-search-console": {
       "command": "npx",
-      "args": ["-y", "google-search-console-mcp"],
+      "args": ["-y", "gluska-seo-gsc-mcp"],
       "env": {
         "GSC_SERVICE_ACCOUNT_PATH": "/path/to/service-account.json"
       }
@@ -159,7 +159,7 @@ Add to your `.vscode/mcp.json`:
   "servers": {
     "google-search-console": {
       "command": "npx",
-      "args": ["-y", "google-search-console-mcp"],
+      "args": ["-y", "gluska-seo-gsc-mcp"],
       "env": {
         "GSC_SERVICE_ACCOUNT_PATH": "/path/to/service-account.json"
       }
@@ -180,7 +180,7 @@ Add to your `~/.codeium/windsurf/mcp_config.json`:
   "mcpServers": {
     "google-search-console": {
       "command": "npx",
-      "args": ["-y", "google-search-console-mcp"],
+      "args": ["-y", "gluska-seo-gsc-mcp"],
       "env": {
         "GSC_SERVICE_ACCOUNT_PATH": "/path/to/service-account.json"
       }
@@ -256,6 +256,163 @@ Here are some things you can ask your AI assistant once the MCP is connected:
 | "Compare this week to last week, then find what's declining" | `compare_periods` + `find_opportunities` |
 | "Check my sitemaps, then inspect URLs from any with errors" | `list_sitemaps` + `batch_inspect_urls` |
 
+## Example Outputs
+
+Here's what you'll actually see when using the tools:
+
+### search_analytics — "Show me my top queries"
+
+```
+Search Analytics for sc-domain:example.com
+Period: 2026-03-15 to 2026-03-22 | Search Type: web | Data: all
+Total: 2.2K clicks, 463.4K impressions, 0.48% avg CTR, 8.3 avg position
+Showing 10 rows
+
+Query                                     | Clicks | Impressions | CTR    | Position
+----------------------------------------- | ------ | ----------- | ------ | --------
+best project management tools             | 312    | 4.1K        | 7.61%  | 3.2
+how to manage remote teams                | 187    | 12.5K       | 1.50%  | 5.8
+project management software comparison    | 143    | 2.8K        | 5.11%  | 4.1
+agile vs waterfall methodology            | 98     | 8.2K        | 1.20%  | 6.4
+free time tracking apps                   | 76     | 15.3K       | 0.50%  | 9.2
+team collaboration tools 2026             | 64     | 1.9K        | 3.37%  | 3.8
+remote work productivity tips             | 52     | 6.7K        | 0.78%  | 7.1
+kanban board tutorial                     | 41     | 3.4K        | 1.21%  | 5.5
+sprint planning best practices            | 38     | 2.1K        | 1.81%  | 4.9
+daily standup meeting guide               | 29     | 1.8K        | 1.61%  | 6.0
+```
+
+### search_analytics — "Break down traffic by device"
+
+```
+Search Analytics for sc-domain:example.com
+Period: 2026-03-15 to 2026-03-22 | Search Type: web | Data: all
+Total: 2.2K clicks, 463.4K impressions, 0.48% avg CTR, 8.1 avg position
+Showing 3 rows
+
+Device  | Clicks | Impressions | CTR   | Position
+------- | ------ | ----------- | ----- | --------
+MOBILE  | 1.2K   | 298.1K      | 0.40% | 9.3
+DESKTOP | 997    | 152.7K      | 0.65% | 6.2
+TABLET  | 34     | 12.6K       | 0.27% | 11.4
+```
+
+### find_opportunities — "Find quick win opportunities"
+
+```
+Opportunity Analysis for sc-domain:example.com
+Recent: 2026-03-15 to 2026-03-22 | Prior: 2026-02-15 to 2026-02-22
+
+## Quick Wins
+High-impression queries ranking 5-20 with low CTR. Optimizing titles/descriptions could boost clicks significantly.
+
+Query                                | Page                                          | Clicks | Impressions | CTR   | Position
+------------------------------------ | --------------------------------------------- | ------ | ----------- | ----- | --------
+free time tracking apps              | https://example.com/time-tracking-tools/       | 76     | 15.3K       | 0.50% | 9.2
+project management certification     | https://example.com/pm-certification-guide/    | 12     | 8.4K        | 0.14% | 11.3
+best free kanban tools               | https://example.com/kanban-tools-comparison/   | 8      | 5.1K        | 0.16% | 8.7
+remote team building activities      | https://example.com/team-building-remote/      | 5      | 3.9K        | 0.13% | 12.1
+agile retrospective templates        | https://example.com/retro-templates/           | 3      | 2.7K        | 0.11% | 10.5
+```
+
+### compare_periods — "Compare this week to last week"
+
+```
+Period Comparison for sc-domain:example.com
+Period 1: 2026-03-08 to 2026-03-14
+Period 2: 2026-03-15 to 2026-03-21
+
+Overall: Clicks 1.9K → 2.1K (+10.5%)
+         Impressions 410.2K → 451.8K (+10.1%)
+
+Top changes (sorted by absolute click delta):
+
+Query                            | P1 Clicks | P2 Clicks | Delta | Change  | P1 Pos | P2 Pos
+-------------------------------- | --------- | --------- | ----- | ------- | ------ | ------
+best project management tools    | 245       | 312       | +67   | +27.3%  | 4.1    | 3.2
+remote work productivity tips    | 78        | 52        | -26   | -33.3%  | 5.4    | 7.1
+agile vs waterfall methodology   | 76        | 98        | +22   | +28.9%  | 7.2    | 6.4
+team collaboration tools 2026    | 45        | 64        | +19   | +42.2%  | 5.1    | 3.8
+sprint planning best practices   | 51        | 38        | -13   | -25.5%  | 3.8    | 4.9
+```
+
+### inspect_url — "Is this page indexed?"
+
+```
+URL Inspection: https://example.com/project-management-guide/
+
+## Index Status
+Verdict: PASS
+Coverage: Submitted and indexed
+Indexing: INDEXING_ALLOWED
+Robots.txt: ALLOWED
+Page fetch: SUCCESSFUL
+Last crawl: 2026-03-20T14:32:00Z
+Crawled as: DESKTOP
+Google canonical: https://example.com/project-management-guide/
+User canonical: https://example.com/project-management-guide/
+Sitemaps: https://example.com/sitemap.xml
+
+## Mobile Usability
+Verdict: PASS
+
+View in Search Console: https://search.google.com/search-console/inspect?...
+```
+
+### batch_inspect_urls — "Check these URLs for indexing issues"
+
+```
+Batch URL Inspection for sc-domain:example.com
+Inspected: 5/5 | Errors: 0
+Quota remaining: 1995/day
+
+## Summary
+  PASS: 3
+  NEUTRAL: 1
+  FAIL: 1
+
+## URLs With Issues
+  NEUTRAL | https://example.com/old-blog-post/
+    coverage=Crawled - currently not indexed, indexing=INDEXING_ALLOWED, crawled=2026-03-18
+  FAIL | https://example.com/test-page/
+    coverage=Blocked by robots.txt, indexing=BLOCKED_BY_ROBOTS_TXT, crawled=never
+```
+
+### list_sitemaps — "Show me my sitemaps"
+
+```
+Sitemaps for sc-domain:example.com
+Total: 2 sitemap(s)
+
+Sitemap URL                           | Type    | Status    | Last Submitted | Errors | Warnings
+------------------------------------- | ------- | --------- | -------------- | ------ | --------
+https://example.com/sitemap.xml       | Index   | Processed | 2026-03-01     | 0      | 0
+https://example.com/sitemap-blog.xml  | Sitemap | Processed | 2026-03-15     | 0      | 2
+
+## Content Details
+
+https://example.com/sitemap.xml:
+  web: 1250 submitted, 1180 indexed
+
+https://example.com/sitemap-blog.xml:
+  web: 340 submitted, 312 indexed
+```
+
+### list_properties — "Which properties do I have access to?"
+
+```
+Search Console Properties
+Total: 3 property/properties
+
+Property                      | Type       | Permission
+----------------------------- | ---------- | ----------
+sc-domain:example.com         | Domain     | siteOwner
+https://blog.example.com/     | URL Prefix | siteFullUser
+sc-domain:myothersite.io      | Domain     | siteFullUser
+
+Use any of these site URLs with other tools (e.g., search_analytics, inspect_url).
+```
+
 ## Environment Variables
 
 | Variable | Description | Required |
@@ -301,7 +458,7 @@ You don't need to worry about hitting these — the server manages them automati
 ### OAuth browser window doesn't open
 - This is a known limitation with stdio-based MCP servers. The server tries to open your default browser, but some MCP clients block this
 - **Workaround:** Use a Service Account instead (recommended for MCP use)
-- Or run the server manually once (`npx google-search-console-mcp`) in a terminal to complete the OAuth flow, then use the cached token in your MCP client
+- Or run the server manually once (`npx gluska-seo-gsc-mcp`) in a terminal to complete the OAuth flow, then use the cached token in your MCP client
 
 ### "spawn npx ENOENT" on macOS
 - Claude Desktop and other MCP clients may not inherit your shell's PATH
@@ -315,8 +472,8 @@ You don't need to worry about hitting these — the server manages them automati
 ## Development
 
 ```bash
-git clone https://github.com/justingluska/google-search-console-mcp.git
-cd google-search-console-mcp
+git clone https://github.com/justingluska/gluska-seo-gsc-mcp.git
+cd gluska-seo-gsc-mcp
 npm install
 npm run build
 npm test
