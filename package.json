@@ -1,0 +1,72 @@
+{
+  "name": "google-search-console-mcp",
+  "version": "0.1.0",
+  "description": "The definitive Google Search Console MCP server — search analytics, URL inspection, sitemaps, indexing API, and smart SEO analysis tools",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "google-search-console-mcp": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/cli.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src/ tests/",
+    "lint:fix": "eslint src/ tests/ --fix",
+    "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\" \"tests/**/*.ts\"",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "google-search-console",
+    "gsc",
+    "seo",
+    "search-analytics",
+    "url-inspection",
+    "sitemaps",
+    "indexing-api",
+    "claude",
+    "cursor",
+    "ai-tools"
+  ],
+  "author": "Justin Gluska",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/justingluska/google-search-console-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/justingluska/google-search-console-mcp/issues"
+  },
+  "homepage": "https://github.com/justingluska/google-search-console-mcp#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "googleapis": "^148.0.0",
+    "google-auth-library": "^9.15.1",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
+    "prettier": "^3.4.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0",
+    "@vitest/coverage-v8": "^3.0.0"
+  }
+}
